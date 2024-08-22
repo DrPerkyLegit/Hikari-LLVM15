@@ -14,7 +14,7 @@ jobs:
     - name: Download Artifacts
       uses: actions/download-artifact@v4.1.8
       with:
-        name: Hikari_LLVM15.0.2_Windows   
+        name: Hikari_LLVM15.0.2_Windows.zip
         path: build
 
     - name: Extract Artifacts
