@@ -16,7 +16,7 @@ jobs:
 
     - name: Download Artifacts from build.yml
       run: |
-        gh run download --repo lianquke/Hikari-LLVM15 --run-id 10506146914 --name Hikari_LLVM15.0.2_Windows --dir D:\buildx\ --pattern "*.zip"
+        gh run download 10506146914 --repo lianquke/Hikari-LLVM15 --name Hikari_LLVM15.0.2_Windows --dir D:\buildx\ --pattern "*.zip"
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         
