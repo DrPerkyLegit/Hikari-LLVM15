@@ -17,6 +17,12 @@ jobs:
           ref: "llvm-18.1.8rel"
           submodules: "recursive"
 
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
+         
+      - name: setup vsdevenv
+        uses: seanmiddleditch/gha-setup-vsdevenv@master
+
       - name: Setup python
         uses: actions/setup-python@v5
         with:
@@ -27,9 +33,6 @@ jobs:
         run: |
           choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
           choco install ninja -y
-      
-      - name: Set up MSVC environment
-        run: cmd /c "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
 
       - name: Build
         shell: cmd
