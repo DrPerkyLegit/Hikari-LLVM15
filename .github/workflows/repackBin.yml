@@ -19,6 +19,10 @@ jobs:
         gh run download 10506146914 --repo lianquke/Hikari-LLVM15 --name Hikari_LLVM15.0.2_Windows --dir D:\buildx\ --pattern "*.zip"
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    - name: List Files in Directory
+      run: |
+        Get-ChildItem -Path D:\buildx\ | Format-Table Name, Length
         
     - name: Extract Artifacts
       run: |
