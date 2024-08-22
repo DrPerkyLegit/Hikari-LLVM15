@@ -11,13 +11,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4.1.6
 
-    - name: Install wget
-      run: choco install wget
+    - name: Install GitHub CLI
+      run: choco install gh
 
-    - name: Download file using wget
+    - name: Download Artifacts from build.yml
       run: |
-        wget -O D:\buildx\Hikari_LLVM15.0.2_Windows.zip https://productionresultssa8.blob.core.windows.net/actions-results/ea39fa2b-4549-4504-83f3-baddd5b17aed/workflow-job-run-ca395085-040a-526b-2ce8-bdc85f692774/artifacts/17be77edae749c8817a852bc222b92f570d5ea5d81622449c134c9004917ebc3.zip?rscd=attachment%3B+filename%3D%22Hikari_LLVM15.0.2_Windows.zip%22&se=2024-08-22T13%3A08%3A53Z&sig=QueF5tBBi3ZlJORSnqWovPhz8xOAYt9vn%2BBsAnfTnVo%3D&ske=2024-08-23T00%3A33%3A47Z&skoid=ca7593d4-ee42-46cd-af88-8b886a2f84eb&sks=b&skt=2024-08-22T12%3A33%3A47Z&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skv=2024-05-04&sp=r&spr=https&sr=b&st=2024-08-22T12%3A58%3A48Z&sv=2024-05-04
-
+        gh run download --repo lianquke/Hikari-LLVM15 --run-id 10506146914 --name Hikari_LLVM15.0.2_Windows --dir D:\buildx\ --pattern "*.zip"
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        
     - name: Extract Artifacts
       run: |
         Expand-Archive -Path D:\buildx\Hikari_LLVM15.0.2_Windows.zip -DestinationPath D:\extracted-files
