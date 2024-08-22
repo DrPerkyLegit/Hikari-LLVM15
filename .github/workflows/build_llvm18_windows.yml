@@ -11,30 +11,30 @@ jobs:
     env:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.6
-        with:
-          ref: "llvm-18.1.8rel"
-          submodules: "recursive"
+      # - name: Checkout
+      #   uses: actions/checkout@v4.1.6
+      #   with:
+      #     ref: "llvm-18.1.8rel"
+      #     submodules: "recursive"
 
-      - name: Setup python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      # - name: Setup python
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: "3.12"
 
-      - name: Install dependencies
-        shell: cmd
-        run: |
-          choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
-          choco install ninja -y
+      # - name: Install dependencies
+      #   shell: cmd
+      #   run: |
+      #     choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
+      #     choco install ninja -y
 
-      - name: Build
-        shell: cmd
-        run: |
-          mkdir build
-          cd build
-          cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang;lld" -DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64" -DLLVM_ENABLE_ZSTD=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_UTILS=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF -DLLVM_BUILD_TOOLS=OFF -DLLVM_INSTALL_TOOLCHAIN_ONLY=ON -DCMAKE_INSTALL_PREFIX="./install" ../llvm
-          ninja
+      # - name: Build
+      #   shell: cmd
+      #   run: |
+      #     mkdir build
+      #     cd build
+      #     cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang;lld" -DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64" -DLLVM_ENABLE_ZSTD=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_UTILS=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF -DLLVM_BUILD_TOOLS=OFF -DLLVM_INSTALL_TOOLCHAIN_ONLY=ON -DCMAKE_INSTALL_PREFIX="./install" ../llvm
+      #     ninja
           # tar -czvf Hikari_LLVM18.1.8_Windows.tar.gz ./install
 
       - name: Upload Artifact
