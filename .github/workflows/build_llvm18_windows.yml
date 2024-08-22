@@ -42,4 +42,4 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: Hikari_LLVM18.1.8_Windows
-          path: ./build
+          path: ./install
