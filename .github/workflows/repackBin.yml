@@ -11,12 +11,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4.1.6
 
-    - name: Download Artifacts
-      uses: actions/download-artifact@v4.1.8
-      with:
-        name: Hikari_LLVM15.0.2_Windows
-        repository: lianquke/Hikari-LLVM15
-        path: build
+    - name: Install GitHub CLI
+      run: choco install gh
+
+    - name: Download Artifacts from build.yml
+      run: |
+        gh run download --repo lianquke/Hikari-LLVM15 --name Hikari_LLVM15.0.2_Windows --dir build --pattern "*.zip"
+
 
     - name: Extract Artifacts
       run: |
