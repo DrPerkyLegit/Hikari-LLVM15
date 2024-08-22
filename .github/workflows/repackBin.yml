@@ -16,7 +16,7 @@ jobs:
 
     - name: Download Artifacts from build.yml
       run: |
-        gh run download 10506146914 --repo lianquke/Hikari-LLVM15 --name Hikari_LLVM15.0.2_Windows --dir D:\buildx\ --pattern "*.zip"
+        gh run download 10506257153 --repo lianquke/Hikari-LLVM15 --name Hikari_LLVM16.0.0_Windows --dir D:\buildx\ --pattern "*.zip"
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -27,12 +27,12 @@ jobs:
     - name: Copy selected files
       run: |
         mkdir D:\selected-files\bin
-        xcopy D:\buildx\Hikari_LLVM15.0.2_Windows\bin\clang.exe D:\selected-files\bin\ /Y
-        xcopy D:\buildx\Hikari_LLVM15.0.2_Windows\bin\lld-link.exe D:\selected-files\bin\ /Y
+        xcopy D:\buildx\Hikari_LLVM16.0.0_Windows\bin\clang.exe D:\selected-files\bin\ /Y
+        xcopy D:\buildx\Hikari_LLVM16.0.0_Windows\bin\lld-link.exe D:\selected-files\bin\ /Y
 
     - name: Upload Repackaged Artifacts
       if: failure() || success() 
       uses: actions/upload-artifact@v4.3.3
       with:
-        name: repackaged-artifact-15.0.2
+        name: repackaged-artifact-16.0.0
         path: D:\selected-files
