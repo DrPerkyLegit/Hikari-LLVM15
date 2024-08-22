@@ -23,16 +23,12 @@ jobs:
     - name: List Files in Directory
       run: |
         Get-ChildItem -Path D:\buildx\ | Format-Table Name, Length
-        
-    - name: Extract Artifacts
-      run: |
-        Expand-Archive -Path D:\buildx\Hikari_LLVM15.0.2_Windows -DestinationPath D:\extracted-files
 
     - name: Copy selected files
       run: |
         mkdirs D:\selected-files\bin
-        xcopy D:\extracted-files\bin\clang.exe D:\selected-files\bin\ /Y
-        xcopy D:\extracted-files\bin\lld-link.exe D:\selected-files\bin\ /Y
+        xcopy D:\buildx\Hikari_LLVM15.0.2_Windows\bin\clang.exe D:\selected-files\bin\ /Y
+        xcopy D:\buildx\Hikari_LLVM15.0.2_Windows\bin\lld-link.exe D:\selected-files\bin\ /Y
 
     - name: Upload Repackaged Artifacts
       if: failure() || success() 
