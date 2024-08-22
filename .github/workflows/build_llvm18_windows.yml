@@ -27,6 +27,12 @@ jobs:
         run: |
           choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
           choco install ninja -y
+      
+      - name: Set up MSBuild
+        run: |
+          echo "##[group]Setting up MSBuild"
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+          echo "##[endgroup]"
 
       - name: Build
         shell: cmd
@@ -41,4 +47,6 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: Hikari_LLVM18.1.8_Windows
-          path: ./build
+          paths: |
+            ./build/bin/clang.exe
+            ./build/bin/lld-link.exe
