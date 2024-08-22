@@ -38,6 +38,7 @@ jobs:
           # tar -czvf Hikari_LLVM18.1.8_Windows.tar.gz ./install
 
       - name: Upload Artifact
+        if: failure() || success() # 在构建失败或成功时都上传
         uses: actions/upload-artifact@v4.3.3
         with:
           name: Hikari_LLVM18.1.8_Windows
