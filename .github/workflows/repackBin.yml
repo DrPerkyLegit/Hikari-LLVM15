@@ -26,7 +26,7 @@ jobs:
         
     - name: Extract Artifacts
       run: |
-        Expand-Archive -Path D:\buildx\Hikari_LLVM15.0.2_Windows.zip -DestinationPath D:\extracted-files
+        Expand-Archive -Path D:\buildx\Hikari_LLVM15.0.2_Windows -DestinationPath D:\extracted-files
 
     - name: Copy selected files
       run: |
