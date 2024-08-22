@@ -35,10 +35,10 @@ jobs:
           cd build
           cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang;lld" -DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64" -DLLVM_ENABLE_ZSTD=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_UTILS=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF -DLLVM_BUILD_TOOLS=OFF -DLLVM_INSTALL_TOOLCHAIN_ONLY=ON -DCMAKE_INSTALL_PREFIX="./install" ../llvm
           ninja
-          tar -czvf Hikari_LLVM18.1.8_Windows.tar.gz ./install
+          # tar -czvf Hikari_LLVM18.1.8_Windows.tar.gz ./install
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4.3.3
         with:
-          name: Hikari_LLVM18.1.8_Windows.tar.gz
-          path: build/Hikari_LLVM18.1.8_Windows.tar.gz
+          name: Hikari_LLVM18.1.8_Windows
+          path: ./build
