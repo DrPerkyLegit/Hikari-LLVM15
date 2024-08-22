@@ -17,6 +17,12 @@ jobs:
           ref: "llvm-15.0.2rel"
           submodules: "recursive"
 
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
+         
+      - name: setup vsdevenv
+        uses: seanmiddleditch/gha-setup-vsdevenv@master
+
       - name: Setup python
         uses: actions/setup-python@v5
         with:
@@ -41,4 +47,6 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: Hikari_LLVM15.0.2_Windows
-          path: ./build
+          paths: |
+            ./build/bin/clang.exe
+            ./build/bin/lld-link.exe
