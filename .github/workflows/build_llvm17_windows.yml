@@ -17,6 +17,12 @@ jobs:
           ref: "llvm-17.0.6rel"
           submodules: "recursive"
 
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
+         
+      - name: setup vsdevenv
+        uses: seanmiddleditch/gha-setup-vsdevenv@master
+
       - name: Setup python
         uses: actions/setup-python@v5
         with:
