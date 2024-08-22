@@ -1,4 +1,4 @@
-name: Build LLVM18 Toolchain for Windows
+name: Build LLVM17 Toolchain for Windows
 
 on:
   workflow_dispatch:
