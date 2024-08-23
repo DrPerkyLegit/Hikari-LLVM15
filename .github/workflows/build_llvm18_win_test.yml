@@ -1,4 +1,4 @@
-name: Build LLVM18 Toolchain for Windows
+name: Build LLVM18 for Windows test
 
 on:
   workflow_dispatch:
@@ -19,6 +19,8 @@ jobs:
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
+        with:
+         msbuild-architecture: x64
          
       - name: setup vsdevenv
         uses: seanmiddleditch/gha-setup-vsdevenv@master
@@ -39,7 +41,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang;lld;" -DLLVM_INCLUDE_DOCS=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF -A x64 -Thost=x64 ..\llvm
+          cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang;lld;" -DLLVM_INCLUDE_DOCS=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF ..\llvm
           ninja
 
       - name: Upload Artifact
