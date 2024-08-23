@@ -41,7 +41,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang;lld;" -DLLVM_INCLUDE_DOCS=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF ..\llvm
+          cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang" -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF ../llvm
           ninja
 
       - name: Upload Artifact
@@ -50,6 +50,4 @@ jobs:
         with:
           name: Hikari_LLVM17.0.6_Windows
           compression-level: 8
-          path: |
-            ./build/bin/clang.exe
-            ./build/bin/lld-link.exe
+          path: ./build/bin/clang.exe
