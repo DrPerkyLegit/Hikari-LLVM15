@@ -50,4 +50,4 @@ jobs:
         with:
           name: Hikari_LLVM15.0.2_Windows
           compression-level: 8
-          path: ./build/bin/clang.exe
+          path: ./build/bin/
