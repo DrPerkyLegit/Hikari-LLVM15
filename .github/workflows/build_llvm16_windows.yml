@@ -47,6 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: Hikari_LLVM16.0.0_Windows
-          paths: |
+          compression-level: 8
+          path: |
             ./build/bin/clang.exe
             ./build/bin/lld-link.exe
