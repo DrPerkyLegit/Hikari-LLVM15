@@ -43,15 +43,13 @@ jobs:
           cd build
           cmake -G Ninja -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded -DCMAKE_CXX_FLAGS="/MT" -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang" -DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64" -DLLVM_ENABLE_ZSTD=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_UTILS=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF -DLLVM_BUILD_TOOLS=OFF ../llvm
 
-            - name: String Replacer
-              # You may pin to the exact commit or the version.
-              # uses: thiagodnf/string-replacer@2ed1d96c4edcede681f867af23289bb8a8b879ae
-              uses: thiagodnf/string-replacer@v1.0.2
-              with:
-                find: /MD
-                replace: /MT
-                include: build/CMakeCache.txt
-                exclude: 
+      - name: String Replacer
+        uses: thiagodnf/string-replacer@v1.0.2
+        with:
+            find: /MD
+            replace: /MT
+            include: build/CMakeCache.txt
+            exclude: .git/**
           
             
       - name: Build2
