@@ -42,8 +42,18 @@ jobs:
           mkdir build
           cd build
           cmake -G Ninja -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded -DCMAKE_CXX_FLAGS="/MT" -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang" -DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64" -DLLVM_ENABLE_ZSTD=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_UTILS=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF -DLLVM_BUILD_TOOLS=OFF ../llvm
-          ninja
 
+      - name: Replace to MT
+        uses: devapro/replace-string-action@v0.1.0
+        with:
+            file-path: .\build\CMakeCache.txt
+            search: /MD
+            replace: /MT
+            
+      - name: Build
+        shell: cmd
+        run: cmake --build build -j16
+          
       - name: Upload Artifact
         if: failure() || success() 
         uses: actions/upload-artifact@v4.3.3
