@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4.1.6
         with:
           ref: "llvm-15.0.2rel"
-          submodules: "recursive"
+          submodules: false
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
